@@ -26,6 +26,78 @@
 			window.setTimeout(function() {
 				$body.removeClass('is-preload');
 			}, 100);
+
+			//// Carousel duplication
+			//var $carouselTrack = $('.carousel-track');
+			//if ($carouselTrack.length > 0) {
+			//	var $items = $carouselTrack.children().clone();
+			//	$carouselTrack.append($items);
+			//}
+
+			// Carrousel duplication + pause on hover
+			//var $carousel = $('.carousel');
+			//var $carouselTrack = $carousel.find('.carousel-track');
+
+			//if ($carouselTrack.length > 0) {
+			//	var $items = $carouselTrack.children().clone();
+			//	$carouselTrack.append($items);
+
+			//	// Stop animation ONLY when hovering the outer .carousel div
+			//	$carousel.on('mouseenter', function () {
+			//		$carouselTrack.css('animation-play-state', 'paused');
+			//	});
+
+			//	$carousel.on('mouseleave', function () {
+			//		$carouselTrack.css('animation-play-state', 'running');
+			//	});
+			//}
+
+			// Carousel script
+			var $carousel = $('.carousel');
+			var $carouselTrack = $carousel.find('.carousel-track');
+			var scrollSpeed = 3;
+			var scrollStep = 300;
+			var autoScrollInterval;
+
+			if ($carouselTrack.length > 0) {
+				// Clone items for loop illusion
+				var $items = $carouselTrack.children().clone();
+				$carouselTrack.append($items);
+
+				// Auto-scroll setup
+				function startAutoScroll() {
+					autoScrollInterval = setInterval(function () {
+						$carouselTrack[0].scrollLeft += scrollSpeed;
+
+						// Reset scroll position if end reached (loop)
+						if ($carouselTrack[0].scrollLeft >= ($carouselTrack[0].scrollWidth / 2)) {
+							$carouselTrack[0].scrollLeft = 0;
+						}
+					}, 10); // delay ms
+				}
+
+				function stopAutoScroll() {
+					clearInterval(autoScrollInterval);
+				}
+
+				// Start auto-scroll
+				startAutoScroll();
+
+				// Pause on hover
+				$carousel.on('mouseenter', stopAutoScroll);
+				$carousel.on('mouseleave', startAutoScroll);
+
+				// Manual scroll buttons
+				$carousel.find('.carousel-btn.left').on('click', function () {
+					stopAutoScroll();
+					$carouselTrack[0].scrollLeft -= scrollStep;
+				});
+
+				$carousel.find('.carousel-btn.right').on('click', function () {
+					stopAutoScroll();
+					$carouselTrack[0].scrollLeft += scrollStep;
+				});
+			}
 		});
 
 	// Mobile?
