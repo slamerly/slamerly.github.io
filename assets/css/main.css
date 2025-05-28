@@ -2747,6 +2747,16 @@ input, select, textarea {
 			width: 60%;
 		}
 
+			.spotlight .content p {
+				text-align: justify;
+				font-size: 12pt;
+			}
+
+			.spotlight .content li {
+				text-align: justify;
+				font-size: 12pt;
+			}
+
 		.spotlight:nth-child(2n) {
 			-moz-flex-direction: row-reverse;
 			-webkit-flex-direction: row-reverse;
@@ -3772,7 +3782,7 @@ input, select, textarea {
 			background: rgba(0,0,0,0.5);
 			color: white;
 			border: none;
-			padding: 1rem;
+			padding: 0 1rem 0 1rem;
 			font-size: 2rem;
 			cursor: pointer;
 			display: none;
@@ -3783,11 +3793,11 @@ input, select, textarea {
 		}
 
 		#banner .carousel-btn.left {
-			left: 10px;
+			left: 20px;
 		}
 
 		#banner .carousel-btn.right {
-			right: 10px;
+			right: 20px;
 		}
 
 		#banner .carousel-track {
