@@ -3,8 +3,9 @@
     "",
     "\\assets",
     "\\assets\\css",
+    "\\assets\\js",
     "\\images"
   ],
-  "SelectedNode": "\\images\\Masquerade_Pres.png",
+  "SelectedNode": "\\assets\\js\\main.js",
   "PreviewInSolutionExplorer": false
 }
