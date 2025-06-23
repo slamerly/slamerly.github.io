@@ -61,8 +61,8 @@
 
 			if ($carouselTrack.length > 0) {
 				// Clone items for loop illusion
-				var $items = $carouselTrack.children().clone();
-				$carouselTrack.append($items);
+				//var $items = $carouselTrack.children().clone();
+				//$carouselTrack.append($items);
 
 				// Auto-scroll setup
 				function startAutoScroll() {
