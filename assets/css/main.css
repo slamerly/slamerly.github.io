@@ -3708,6 +3708,7 @@ input, select, textarea {
 		#banner p {
 			letter-spacing: 0.225em;
 			text-transform: uppercase;
+			margin: 0 0 10em 0;
 		}
 
 			#banner p a {
@@ -3987,7 +3988,7 @@ input, select, textarea {
 /* Footer */
 
 	#footer {
-		padding: 2em 0 2em 0 ;
+		padding: 3em 0 1em 0 ;
 		background-color: #1d242a;
 		text-align: center;
 		display: flex;
