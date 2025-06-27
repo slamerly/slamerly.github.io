@@ -2752,6 +2752,11 @@ input, select, textarea {
 				font-size: 12pt;
 			}
 
+			.spotlight .content b {
+				font-size: 14pt;
+				font-weight:bolder;
+			}
+
 			.spotlight .content li {
 				text-align: justify;
 				font-size: 12pt;
