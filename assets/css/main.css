@@ -3485,8 +3485,7 @@ input, select, textarea {
 
 				#menu ul > li:last-child {
 					margin-top: auto;
-					border-top: 0 !important;
-					padding-top: 0 !important;
+					border-top: none !important;
 				}
 
 				#menu ul > li > a {
