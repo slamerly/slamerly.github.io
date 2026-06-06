@@ -1403,10 +1403,15 @@
 		top: 0;
 		width: 20em;
 		z-index: _misc(z-index-base) + 2;
+		display: flex;
+		flex-direction: column;
 
 		ul {
 			list-style: none;
 			padding: 0;
+			flex: 1;
+			display: flex;
+			flex-direction: column;
 
 			> li {
 				border-top: solid 1px _palette(accent1, border);
@@ -1416,6 +1421,12 @@
 				&:first-child {
 					border-top: 0 !important;
 					margin-top: 0 !important;
+					padding-top: 0 !important;
+				}
+
+				&:last-child {
+					margin-top: auto;
+					border-top: 0 !important;
 					padding-top: 0 !important;
 				}
 
