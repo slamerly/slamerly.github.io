@@ -2118,7 +2118,7 @@ input, select, textarea {
 		}
 
 		.image.left, .image.right {
-			max-width: 40%;
+			max-width: 19%;
 		}
 
 			.image.left img, .image.right img {
@@ -3058,7 +3058,22 @@ input, select, textarea {
 			}
 
 		.wrapper.style2 {
-			background-color: #2e3842;
+			background-color: #2a333d;
+		}
+
+			.about-content p {
+				text-align: justify;
+				font-size: 12pt;
+			}
+
+			.about-content li {
+				text-align: justify;
+				font-size: 12pt;
+			}
+
+		.about-content b, .about-content strong {
+			font-size: 14pt;
+			font-weight: bolder;
 		}
 
 		.wrapper.style3 {
