@@ -3889,6 +3889,12 @@ body.is-menu-visible #menu {
 	transform: translate(-50%, -50%);
 	pointer-events: none;
 	border: 0;
+	opacity: 0;
+	transition: opacity 0.45s ease;
+}
+
+#banner .banner-video-shell.is-video-visible iframe {
+	opacity: 1;
 }
 
 #banner .banner-video-overlay {

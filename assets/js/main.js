@@ -148,7 +148,6 @@
 		var trailerPlaylist = [
 			{ id: 'tF0D5lFZY7c' }
 		];
-		var clipDurationMs = 11000;
 		var player;
 		var trailerIndex = 0;
 		var trailerTimer = null;
@@ -185,22 +184,47 @@
 
 		function cueVideo(videoId, startSeconds) {
 			if (!player) return;
+			$shell.removeClass('is-video-visible');
 			player.loadVideoById({ videoId: videoId, startSeconds: startSeconds || 0 });
 			player.mute();
+		}
+
+		function advanceTrailer() {
+			trailerIndex = (trailerIndex + 1) % trailerPlaylist.length;
+			trailerState.index = trailerIndex;
+			trailerState.time = 0;
+			cueVideo(trailerPlaylist[trailerIndex].id, 0);
 		}
 
 		function scheduleTrailerAdvance() {
 			clearTrailerTimer();
 			if (currentMode !== 'trailer') return;
+			if (trailerPlaylist.length <= 1) return;
+
+			var durationSec = 0;
+			var currentSec = 0;
+
+			if (player && player.getDuration) {
+				durationSec = Number(player.getDuration()) || 0;
+			}
+
+			if (player && player.getCurrentTime) {
+				currentSec = Number(player.getCurrentTime()) || 0;
+			}
+
+			if (durationSec <= 0) {
+				trailerTimer = setTimeout(function () {
+					scheduleTrailerAdvance();
+				}, 1000);
+				return;
+			}
+
+			var remainingMs = Math.max(800, Math.floor((durationSec - currentSec) * 1000));
 
 			trailerTimer = setTimeout(function () {
 				if (currentMode !== 'trailer') return;
-				trailerIndex = (trailerIndex + 1) % trailerPlaylist.length;
-				trailerState.index = trailerIndex;
-				trailerState.time = 0;
-				cueVideo(trailerPlaylist[trailerIndex].id, 0);
-				scheduleTrailerAdvance();
-			}, clipDurationMs);
+				advanceTrailer();
+			}, remainingMs + 150);
 		}
 
 		function playTrailer(startIndex, startSeconds) {
@@ -307,6 +331,32 @@
 						event.target.mute();
 						bindItemHover();
 						playTrailer(0, 0);
+					},
+					onStateChange: function (event) {
+						if (event.data === YT.PlayerState.PLAYING) {
+							$shell.addClass('is-video-visible');
+						}
+
+						if (event.data === YT.PlayerState.BUFFERING || event.data === YT.PlayerState.CUED) {
+							$shell.removeClass('is-video-visible');
+						}
+
+						if (currentMode !== 'trailer') {
+							return;
+						}
+
+						if (event.data === YT.PlayerState.PLAYING) {
+							scheduleTrailerAdvance();
+						}
+
+						if (event.data === YT.PlayerState.ENDED) {
+							if (trailerPlaylist.length <= 1) {
+								event.target.seekTo(0);
+								event.target.playVideo();
+							} else {
+								advanceTrailer();
+							}
+						}
 					}
 				}
 			});
