@@ -46,31 +46,6 @@
 			setTimeout(typeNextCharacter, 700);
 		}
 
-		//// Carousel duplication
-		//var $carouselTrack = $('.carousel-track');
-		//if ($carouselTrack.length > 0) {
-		//	var $items = $carouselTrack.children().clone();
-		//	$carouselTrack.append($items);
-		//}
-
-		// Carrousel duplication + pause on hover
-		//var $carousel = $('.carousel');
-		//var $carouselTrack = $carousel.find('.carousel-track');
-
-		//if ($carouselTrack.length > 0) {
-		//	var $items = $carouselTrack.children().clone();
-		//	$carouselTrack.append($items);
-
-		//	// Stop animation ONLY when hovering the outer .carousel div
-		//	$carousel.on('mouseenter', function () {
-		//		$carouselTrack.css('animation-play-state', 'paused');
-		//	});
-
-		//	$carousel.on('mouseleave', function () {
-		//		$carouselTrack.css('animation-play-state', 'running');
-		//	});
-		//}
-
 		// Carousel script
 		var $carousel = $('.carousel');
 		var $carouselTrack = $carousel.find('.carousel-track');
@@ -184,7 +159,6 @@
 
 		function cueVideo(videoId, startSeconds) {
 			if (!player) return;
-			$shell.removeClass('is-video-visible');
 			player.loadVideoById({ videoId: videoId, startSeconds: startSeconds || 0 });
 			player.mute();
 		}
@@ -335,10 +309,6 @@
 					onStateChange: function (event) {
 						if (event.data === YT.PlayerState.PLAYING) {
 							$shell.addClass('is-video-visible');
-						}
-
-						if (event.data === YT.PlayerState.BUFFERING || event.data === YT.PlayerState.CUED) {
-							$shell.removeClass('is-video-visible');
 						}
 
 						if (currentMode !== 'trailer') {
