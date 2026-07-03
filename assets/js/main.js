@@ -29,10 +29,14 @@
 		}, 100);
 
 		// Typewriter animation
-		var typewriterText = 'Gameplay & Tools Programmer';
+		var typewriterText = '';
 		var typewriterElement = $('.typewriter-text');
 		var cursorElement = $('.typewriter-cursor');
 		if (typewriterElement.length > 0) {
+			// Detect page language
+			var isFrench = $('html').attr('lang') === 'fr' || window.location.pathname.includes('/fr/');
+			typewriterText = isFrench ? 'Programmeur Gameplay & Outils' : 'Gameplay & Tools Programmer';
+
 			var index = 0;
 			var typingSpeed = 50;
 			function typeNextCharacter() {
@@ -508,6 +512,30 @@
 			target: $body,
 			visibleClass: 'is-menu-visible'
 		});
+
+	// Tab toggles for interest cards
+	window.toggleCard = function (element) {
+		var $card = $(element);
+		var wasActive = $card.hasClass('active');
+
+		// Close other cards in the same grid
+		$card.siblings('.about-card').removeClass('active');
+
+		if (wasActive) {
+			$card.removeClass('active');
+		} else {
+			$card.addClass('active');
+			
+			// Smoothly scroll card into view if it goes off-screen
+			setTimeout(function() {
+				var rect = element.getBoundingClientRect();
+				if (rect.top < 80 || rect.bottom > window.innerHeight) {
+					var targetScroll = window.scrollY + rect.top - 100;
+					window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+				}
+			}, 350);
+		}
+	};
 
 	// Active menu state (current page + current section when available).
 	var $menu = $('#menu');
