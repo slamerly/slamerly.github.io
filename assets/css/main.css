@@ -5253,6 +5253,7 @@ body.trailer-header #main>header p {
 	text-align: center;
 	display: flex;
 	justify-content: center;
+	scroll-snap-align: end;
 }
 
 #footer .inner {

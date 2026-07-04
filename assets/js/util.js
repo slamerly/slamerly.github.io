@@ -156,6 +156,13 @@
 							if (!href || href == '#' || href == '' || href == '#' + id)
 								return;
 
+							// If link has target="_blank", let the browser open it in a new window/tab naturally.
+							// This avoids browser popup blockers blocking window.open inside a setTimeout.
+							if (target == '_blank') {
+								$this._hide();
+								return;
+							}
+
 							// Cancel original event.
 								event.preventDefault();
 								event.stopPropagation();
