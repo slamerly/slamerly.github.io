@@ -30,9 +30,11 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    env:
+      DEPLOY_RETRY_DELAY_SECONDS: 15
     environment:
       name: github-pages
-      url: ${{ steps.deploy_retry.outputs.page_url || steps.deploy.outputs.page_url }}
+      url: ${{ steps.deploy.outputs.page_url || steps.deploy_retry.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deploy
@@ -41,7 +43,7 @@ jobs:
 
       - name: Wait before retry
         if: steps.deploy.outcome == 'failure'
-        run: sleep 15
+        run: sleep "$DEPLOY_RETRY_DELAY_SECONDS"
 
       - name: Retry deploy to GitHub Pages
         if: steps.deploy.outcome == 'failure'
