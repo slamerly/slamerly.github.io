@@ -4334,6 +4334,46 @@ html.has-spotlights.is-snap-paused {
 	padding-bottom: 0;
 }
 
+#menu ul.actions.special.menu-cvs {
+	margin-bottom: 1em !important;
+	display: flex !important;
+	flex-direction: row !important;
+	align-items: center !important;
+	border-top: none !important;
+	padding-top: 0 !important;
+}
+
+#menu ul.actions.special.menu-cvs li.cv-btn-fr {
+	width: 48% !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	border-top: 0 !important;
+}
+
+#menu ul.actions.special.menu-cvs li.cv-btn-en {
+	width: 48% !important;
+	padding: 0 !important;
+	margin: 0 0 0 4% !important;
+	border-top: 0 !important;
+}
+
+#menu ul.actions.special.menu-cvs .button {
+	font-size: 0.72em !important;
+	background-color: rgba(255, 255, 255, 0.15) !important;
+	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4) !important;
+}
+
+#menu ul.actions.special.menu-langue {
+	border-top: solid 1px rgba(255, 255, 255, 0.15) !important;
+	padding-top: 1em !important;
+}
+
+#menu .menu-cv-container {
+	margin-top: auto !important;
+	border-top: solid 1px rgba(255, 255, 255, 0.15) !important;
+	padding-top: 1em !important;
+}
+
 #menu ul.actions li {
 	padding-left: 0;
 	width: 100%;
